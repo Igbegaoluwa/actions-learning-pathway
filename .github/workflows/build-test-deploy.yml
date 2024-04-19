@@ -1,18 +1,18 @@
-  name: build-test-deploy
-  on: push
-  jobs:
-    build:
-      runs-on: ubuntu-latest
-      steps:
-        - name: checkout repo
-          uses: actions/checkout@v3
-        - name: use node.js
-          uses: actions/setup-node@v3
-          with: 
-            node-version: '18.x'
-        - run: npm install
-        - run: npm run build 
-    test:
+name: build-test-deploy
+on: push
+jobs: 
+  build:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: checkout repo
+        uses: actions/checkout@v3
+      - name: use node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+      - run: npm install
+      - run: npm run build
+  test: 
     needs: build
     runs-on: ubuntu-latest
     steps: 
@@ -40,11 +40,7 @@
           uses: actions/checkout@v3
           with:
             token: ${{ secrets.GITHUB_TOKEN }}
-      stepss:
-        - name: checkout repo
-          uses: actions/checkout@v3
-          with:
-            token: ${{ secrets.GITHUB_TOKEN }}
+    
         - name: use node.js
           uses: actions/setup-node@v3
           with:
